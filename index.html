@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Display Markdown from GitHub</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+<div id="blogpost"></div>
+
+<script>
+  // Fetch Markdown file from GitHub repository
+  fetch('https://raw.githubusercontent.com/nathanpuls/markdown/main/post.md')
+    .then(response => response.text())
+    .then(markdown => {
+      // Parse Markdown to HTML
+      const html = marked(markdown);
+      
+      // Display content on your website
+      document.getElementById('blogpost').innerHTML = html;
+    })
+    .catch(error => console.error('Error fetching Markdown:', error));
+</script>
+
+</body>
+</html>
